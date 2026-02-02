@@ -75,4 +75,3 @@ This approach closely matches production patterns where event generation, ingest
 └── consumer/
     ├── Dockerfile
     └── consumer.py
-- **Improve reliability semantics**: Use idempotent writes and (optionally) manual offset commits after successful writes to reduce duplicates and improve recovery behavior.
