@@ -1,4 +1,4 @@
-# Real-Time Interaction Analytics Pipeline (Kafka → Elasticsearch → Kibana)
+# Real-Time Interaction Analytics Pipeline
 
 ## Overview
 This project implements a real-time data pipeline that generates application interaction events (e.g., click/view/purchase), streams them through Kafka, performs continuous aggregations in near real-time, stores the processed results in a NoSQL database (Elasticsearch), and visualizes the metrics in Kibana.
