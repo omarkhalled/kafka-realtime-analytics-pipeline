@@ -50,18 +50,6 @@ Everything runs as Docker containers because it provides:
 This approach closely matches production patterns where event generation, ingestion, processing, storage, and visualization are typically deployed as separate services.
 
 ---
-
-## Repository Structure
-
-```text
-.
-├── docker-compose.yml
-├── producer/
-│   ├── Dockerfile
-│   └── producer.py
-└── consumer/
-    ├── Dockerfile
-    └── consumer.py
 ## Limitations (Summary) & How to Scale Next
 
 ### Current Limitations (in this implementation)
@@ -74,4 +62,17 @@ This approach closely matches production patterns where event generation, ingest
 - **Key-based partitioning**: Produce messages with a key (`user_id` or `item_id`) so all events for the same key land in the same partition → correct per-key aggregation when scaling consumers.
 - **Externalize state**: Move aggregation state to Kafka Streams/Flink (stateful processing) or Redis/state store to survive restarts and support distributed correctness.
 - **Upsert “current state” documents in Elasticsearch**: Instead of indexing per event, maintain one document per `user_id` and one per `item_id` using deterministic document IDs and atomic upserts.
+
+
+## Repository Structure
+
+```text
+.
+├── docker-compose.yml
+├── producer/
+│   ├── Dockerfile
+│   └── producer.py
+└── consumer/
+    ├── Dockerfile
+    └── consumer.py
 - **Improve reliability semantics**: Use idempotent writes and (optionally) manual offset commits after successful writes to reduce duplicates and improve recovery behavior.
